@@ -23,16 +23,20 @@ flying_object::flying_object( int id )
 
 int flying_object::CheckWeather()
 {
-    srand(time(NULL));
-    return rand()%100;
+    if (this->flag==0)
+    {
+        this->flag=1;
+        srand(time(NULL));
+        return rand()%100+1;
+    }
+    return rand()%100+1;
 }
 
 int flying_object::fly()
 {
     if (flying_object::CheckWeather()<50)
-    {
         this->state-=3;
-    }
+
     flying_object :: log ();
 
     return(this->state<3);

@@ -3,6 +3,8 @@
 
 class flying_object
 {
+private:
+    int flag=0;
 protected:
     int state;
     int identifiant;

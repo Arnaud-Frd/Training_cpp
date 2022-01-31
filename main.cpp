@@ -27,6 +27,7 @@ int main()
         cout<<"Decollage ...\n";
         cout<<"Vol en cours ..."<<endl;
 
+
         chrono::steady_clock::time_point timer_20 = chrono::steady_clock::now()+chrono::seconds(20);
 
         while(chrono::steady_clock::now()<timer_20)
