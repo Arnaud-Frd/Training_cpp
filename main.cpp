@@ -6,14 +6,13 @@
 #include<vector>
 #include<chrono>
 #include<time.h>
-#include<windows.h>
+#include<thread>
 using namespace std;
 
 int main()
 {
 
         int flag,iter=0;
-
 
         vector<flying_object *> station1 = { new Plane(1) , new Helicopter(2) , new Plane(3) , new Plane(4) , new Helicopter(5) , new Helicopter(6) ,
                                              new Plane(7) , new Helicopter(8) , new Plane(9) , new Plane(10) , new Helicopter(11) , new Helicopter(12) ,
@@ -52,10 +51,11 @@ int main()
 
                 station1=station1_temp;
                 station1_temp.clear();
-                Sleep(500);
+
+                // utilisation d'un thread pour ne pas stoper tout le programme, si d'autre taches sont en cours d'executions.
+                this_thread::sleep_for(chrono::milliseconds(500ms));
 
             }
-
             else
                 break;
 
@@ -81,7 +81,6 @@ int main()
             }
         }
 
-
         // log avion perdu en vol
         cout << "\n\nObjets volants perdus :"<< station3.size() <<"\n\n";
 
@@ -95,7 +94,7 @@ int main()
 
         cout << "\nratio : " << station2.size() << " sur " << (station2.size()+station3.size()) << endl;
 
-        // suppresion des pointeurs trouver comment faire ( station1 2 et 3 )
+        // suppresion des pointeurs
         for (unsigned long long i=0 ; i <= station2.size() -1 ; i++){ delete(station2[i]); }
         for (unsigned long long i=0 ; i <= station3.size() -1 ; i++){ delete(station3[i]); }
 
